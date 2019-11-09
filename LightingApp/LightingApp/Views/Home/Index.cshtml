@@ -1,0 +1,234 @@
+﻿@model LightingViewModel
+@{
+    ViewData["Title"] = "Lighting Record";
+}
+
+    <form asp-controller="HomeController" asp-action="Index" method="post" id="lightingForm">
+            <fieldset id="question-1" class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                        What is your name?
+                    </h1>
+                </legend>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="address-line-1">
+                        Enter your name <span class="govuk-visually-hidden">line 1 of 2</span>
+                    </label>
+                    <span asp-validation-for="Name" class="govuk-error-message"></span>
+                    <input asp-for="Name" class="govuk-input" />
+                </div>
+
+                <button type="button" class="govuk-button" data-module="govuk-button" onclick="goToQuestion(2)">
+                    Continue
+                </button>
+            </fieldset>
+
+            <fieldset id="question-2" class="govuk-fieldset hidden">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                        What is your Email address?
+                    </h1>
+                </legend>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="address-line-1">
+                        Enter your email address <span class="govuk-visually-hidden">line 1 of 2</span>
+                    </label>
+                    <span asp-validation-for="EmailAddress" class="govuk-error-message"></span>
+                    <input asp-for="EmailAddress" class="govuk-input" />
+                </div>
+
+                <button type="button" class="govuk-button" data-module="govuk-button" onclick="goToQuestion(3)">
+                    Continue
+                </button>
+            </fieldset>
+
+            <fieldset id="question-3" class="govuk-fieldset hidden">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                        What is your home address?
+                    </h1>
+                </legend>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="address-line-1">
+                        Building name or number <span class="govuk-visually-hidden">line 1 of 2</span>
+                    </label>
+                    <span asp-validation-for="AddressNameOrNumber" class="govuk-error-message"></span>
+                    <input asp-for="AddressNameOrNumber" class="govuk-input" />
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="address-line-2">
+                        <span class="govuk-visually-hidden">Building and street line 2 of 2</span>
+                    </label>
+                    <span asp-validation-for="AddressLine1" class="govuk-error-message"></span>
+                    <input asp-for="AddressLine1" class="govuk-input" />
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="address-town">
+                        Area
+                    </label>
+                    <span asp-validation-for="AddressLine2" class="govuk-error-message"></span>
+                    <input asp-for="AddressLine2" class="govuk-input govuk-!-width-two-thirds" />
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="address-county">
+                        Town or city
+                    </label>
+                    <span asp-validation-for="AddressTown" class="govuk-error-message"></span>
+                    <input asp-for="AddressTown" class="govuk-input govuk-!-width-two-thirds" />
+                </div>
+
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="address-postcode">
+                        Postcode
+                    </label>
+                    <span asp-validation-for="AddressPostcode" class="govuk-error-message"></span>
+                    <input asp-for="AddressPostcode" class="govuk-input govuk-input--width-10" />
+                </div>
+
+                <button type="button" class="govuk-button" data-module="govuk-button" onclick="goToQuestion(4)">
+                    Continue
+                </button>
+
+            </fieldset>
+
+            <fieldset id="question-4" class="govuk-fieldset hidden">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                        Are you happy with the level of lighting?
+                    </h1>
+                </legend>
+
+                <div class="govuk-radios govuk-radios--inline">
+                    <span asp-validation-for="AcceptableLighting" class="govuk-error-message"></span>
+                    <div class="govuk-radios__item">
+                        <input asp-for="AcceptableLighting" class="govuk-checkboxes__input" />
+                        <input asp-for="AcceptableLighting" class="govuk-radios__input" type="radio" value="true">
+                        <label class="govuk-label govuk-radios__label" for="changed-name">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="govuk-radios__item">
+                        <input asp-for="AcceptableLighting" class="govuk-radios__input" type="radio" value="false">
+                        <label class="govuk-label govuk-radios__label" for="changed-name-2">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <button type="button" class="govuk-button" data-module="govuk-button" onclick="goToQuestion(5)">
+                    Continue
+                </button>
+            </fieldset>
+
+            <fieldset id="question-5" class="govuk-fieldset hidden">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+                    <h1 class="govuk-fieldset__heading">
+                        What is the level of brightness?
+                    </h1>
+                </legend>
+
+                <div class="govuk-form-group">
+                    <span asp-validation-for="BrightnessLevel" class="govuk-error-message"></span>
+                    <select asp-for="BrightnessLevel" class="govuk-select">
+                        <option value="1">1 - Very Dark</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10 - Very Bright</option>
+                    </select>
+                </div>
+
+                <button type="button" class="govuk-button" data-module="govuk-button" onclick="goToConfirm()">
+                    Continue
+                </button>
+            </fieldset>
+
+
+            <div id="confirm" class="hidden">
+                <h1 class="govuk-heading-xl">Check your answers before sending your application</h1>
+
+                <h2 class="govuk-heading-m">Your details</h2>
+
+                <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <span id="confirm-name"></span>
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" onclick="goToQuestion(1)" href="#">
+                                Change<span class="govuk-visually-hidden">name</span>
+                            </a>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Email Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <span id="confirm-emailAddress"></span>
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" onclick="goToQuestion(2)" href="#">
+                                Change<span class="govuk-visually-hidden"> email address</span>
+                            </a>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Home Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <span id="confirm-homeAddress"></span>
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" onclick="goToQuestion(3)" href="#">
+                                Change<span class="govuk-visually-hidden"> address</span>
+                            </a>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Are you happy with the level of lighting?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <span id="confirm-happy"></span>
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" onclick="goToQuestion(4)" href="#">
+                                Change<span class="govuk-visually-hidden"> lighting</span>
+                            </a>
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Brightness Level
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                            <span id="confirm-brightness"></span>
+                        </dd>
+                        <dd class="govuk-summary-list__actions">
+                            <a class="govuk-link" onclick="goToQuestion(5)" href="#">
+                                Change<span class="govuk-visually-hidden"> brightness</span>
+                            </a>
+                        </dd>
+                    </div>
+                </dl>
+
+                <input type="submit" value="Create" class="govuk-button" />
+            </div>
+    </form>
+
