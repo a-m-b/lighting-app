@@ -1,9 +1,7 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var $backLink = $('.govuk-back-link');
+var $confirm = $('#confirm');
 
-// Write your JavaScript code.
-
-function goToQuestion(qestion) {
+function goToQuestion(question) {
     var validForm = $("#lightingForm").valid();
 
     if (validForm === false) {
@@ -11,7 +9,8 @@ function goToQuestion(qestion) {
     }
 
     hideAll();
-    $('#question-' + qestion).removeClass('hidden');
+    backToggle(question);
+    $('#question-' + question).removeClass('hidden');
 }
 
 function goToConfirm() {
@@ -22,16 +21,27 @@ function goToConfirm() {
     }
 
     hideAll();
-    $('#confirm').removeClass('hidden');
+    backToggle(6);
+    $confirm.removeClass('hidden');
 }
 
 function hideAll() {
     var questions = 5;
-    $('#confirm').addClass('hidden');
+    $confirm.addClass('hidden');
 
     for (i = 1; i <= questions; i++) {
         $('#question-' + i).addClass('hidden');
     } 
+}
+
+function backToggle(qestion) {
+    $backLink.data('question', qestion);
+
+    if (qestion === 1) {
+        $backLink.addClass('hidden');
+    } else {
+        $backLink.removeClass('hidden');
+    }
 }
 
 function updateField(id, value) {
@@ -70,6 +80,14 @@ $(document).ready(function () {
         $('#confirm-homeAddress').text(address);
         $('#confirm-happy').text(acceptLighting);
         $('#confirm-brightness').text(brightness);
+    });
+
+    $backLink.click(function () {
+        var question = $(this).data('question');
+        var newQuestion = (question - 1);
+        hideAll();
+        backToggle(newQuestion);
+        $('#question-' + newQuestion).removeClass('hidden');
     });
 
     $.validator.setDefaults({
